@@ -1,8 +1,6 @@
 // Write your "projects" router here!
 const express = require('express');
 
-// import middleware at some point
-
 const {
     errorHandling, 
     verifyId, 
@@ -11,8 +9,6 @@ const {
 
 const Projects = require('./projects-model')
 const router = express.Router();
-
-//Verify ID, Verify Body, errorHandle, 
 
 // GET /api/projects returns projects
 

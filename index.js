@@ -13,10 +13,13 @@ I need this code, but don't know where, perhaps should make some middleware, don
 Pull your server into this file and start it!
 */
 
-const server = require('./api/server');
+require('dotenv').config();
 
-const port = 9000
 
-server.listen(port, () => {
-    console.log(` Sprint BuildAPI listening on http://localhost:${port} `)
+const server = require('./api/server.js')
+
+const PORT = process.env.PORT || 9000;
+
+server.listen(PORT, () => {
+    console.log(` Sprint BuildAPI listening on http://localhost:${PORT} `)
 });
