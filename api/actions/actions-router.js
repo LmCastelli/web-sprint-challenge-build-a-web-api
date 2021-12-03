@@ -34,10 +34,20 @@ router.post('/', verifyPayload, (req, res, next) => {
         })
 })
 
+router.put('/:id', verifyId, verifyPayload, (req, res, next) => {
+    Actions.update(req.params.id, req.body)
+        .then(project => {
+            res.status(200).json(project)
+        })
+        .catch(err => {
+            next(err);
+        })
+})
+
 router.delete('/:id', verifyId, (req, res, next) => {
     Actions.remove(req.params.id)
         .then(projects => { // eslint-disable-line
-            res.status(200).json({ message: "Project removed"})
+            res.status(200).json({ message: "Action removed"})
         })
         .catch(err => {
             next(err);
