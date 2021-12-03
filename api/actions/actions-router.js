@@ -21,7 +21,7 @@ router.get('/', (req, res, next) =>  {
 })
 
 router.get('/:id', verifyId, (req, res) => {
-    res.status(200).json(req.project)
+    res.status(200).json(req.action)
 })
 
 router.post('/', verifyPayload, (req, res, next) => {
