@@ -30,7 +30,7 @@ router.get('/', (req, res, next) =>  {
 
 //GET /api/projects/id gets by ID
 
-router.get('/:id', verifyId, (req, res, next) => {
+router.get('/:id', verifyId, (req, res) => {
     res.status(200).json(req.project)
 })
 
@@ -51,7 +51,7 @@ router.post('/', verifyPayload, (req, res, next) => {
 router.put('/:id', verifyId, verifyPayload, (req, res, next) => {
     Projects.update(req.params.id, req.body)
         .then(project => {
-            res.json(project)
+            res.status(200).json(project)
         })
         .catch(err => {
             next(err);
@@ -60,14 +60,26 @@ router.put('/:id', verifyId, verifyPayload, (req, res, next) => {
 
 // DELETE /api/projects/id deletes, returns no response body
 
-router.delete('/:id', (req, res, next) => {
-
+router.delete('/:id', verifyId, (req, res, next) => {
+    Projects.remove(req.params.id)
+        .then(projects => { // eslint-disable-line
+            res.status(200).json({ message: "Project removed"})
+        })
+        .catch(err => {
+            next(err);
+        })
 })
 
 // GET /api/projects/id/actions returns actions of specific ID
 
-router.get('/:id/actions', (req, res, next) => {
-
+router.get('/:id/actions', verifyId, (req, res, next) => {
+    Projects.getProjectActions(req.params.id)
+        .then(actions => {
+            res.status(200).json(actions)
+        })
+        .catch(err => {
+            next(err);
+        })
 })
 
 router.use(errorHandling);
