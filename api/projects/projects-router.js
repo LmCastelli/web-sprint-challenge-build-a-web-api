@@ -1,6 +1,4 @@
 // Write your "projects" router here!
-
-const { Router } = require('express');
 const express = require('express');
 
 // import middleware at some point
@@ -12,7 +10,7 @@ const {
 } = require('./projects-middleware')
 
 const Projects = require('./projects-model')
-const router = express(Router);
+const router = express.Router();
 
 //Verify ID, Verify Body, errorHandle, 
 
